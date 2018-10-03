@@ -25,16 +25,10 @@ public class ScoreList : MonoBehaviour {
         List<int> temp = new List<int>();
         temp = scoreList;
         scoreList.Clear();
-
         temp.Sort();
-        int highest=0;
-        foreach(int x in temp)
+        for(int i = temp.Count -1; i < 0; i--)
         {
-            if(x > highest)
-            {
-               highest = x;
-            }
+            scoreList.Add(temp[i]);
         }
-        scoreList = temp;
     }
 }
