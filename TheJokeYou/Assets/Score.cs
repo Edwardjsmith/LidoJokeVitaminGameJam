@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
 
@@ -8,9 +9,12 @@ public class Score : MonoBehaviour {
     public int comboCount;
     public int lives;
 
-	// Use this for initialization
-	void Start () {
-		
+    public Text scoreText;
+    public Text livesText;
+    // Use this for initialization
+    void Start () {
+        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        livesText = GameObject.Find("LivesText").GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -29,12 +33,14 @@ public class Score : MonoBehaviour {
             score = (score+1) * comboCount;
         }
         comboCount++;
+        scoreText.text = score.ToString();
     }
 
     public void resetCombo()
     {
         comboCount = 0;
         lives--;
+        livesText.text = lives.ToString();
         if(lives<0)
         {
             // do end game
