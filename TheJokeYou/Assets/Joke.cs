@@ -25,6 +25,8 @@ public class Joke : MonoBehaviour {
     private Score score;
     private TextMesh textMesh;
     private float textWidth;
+    private string[] jokeList;
+    private string prevJoke;
 
     void Start()
     {
@@ -32,12 +34,22 @@ public class Joke : MonoBehaviour {
         textMesh = GetComponent<TextMesh>();
         baseSpeed = speed;
         startTimer = timeToStart;
+        jokeList = jokes.text.Split('\n');
         ResetPosition();
     }
 
 	public void ResetPosition()
     {
-        if (jokes) textMesh.text = "<-" + jokes.text.Split('\n')[Random.Range(0, jokes.text.Split('\n').Length)] + "--";
+        if (jokes)
+        {
+            string nextJoke = jokeList[Random.Range(0, jokeList.Length)];
+            while (nextJoke == prevJoke)
+            {
+                nextJoke = jokeList[Random.Range(0, jokeList.Length)];
+            }
+            textMesh.text = "<-" + nextJoke + "--";
+            prevJoke = nextJoke;
+        }
         transform.position = new Vector3(startX, Random.Range(minY, maxY), 0);
         moveTimer = timeToNextJoke;
         warningTimer = warningTime;
@@ -55,6 +67,8 @@ public class Joke : MonoBehaviour {
         }
 
         textWidth = width * textMesh.characterSize * textMesh.transform.lossyScale.x * 0.1f;
+        GetComponent<BoxCollider2D>().size = new Vector2(textWidth * 10, 10);
+        GetComponent<BoxCollider2D>().offset = new Vector2(textWidth * 5, 0);
     }
 
     public void ResetSpeed()
