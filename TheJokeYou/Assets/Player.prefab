@@ -152,7 +152,9 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   layerMask: 0
   canJump: 0
-  maxJumpPower: 13.5
+  maxJumpPower: 45
+  powerBar: {fileID: 0}
+  jumpSpeed: 50
 --- !u!114 &114294350124996224
 MonoBehaviour:
   m_ObjectHideFlags: 1
