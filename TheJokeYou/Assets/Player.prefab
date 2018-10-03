@@ -26,6 +26,8 @@ GameObject:
   - component: {fileID: 95083448292599816}
   - component: {fileID: 114931564303226482}
   - component: {fileID: 61437433478425098}
+  - component: {fileID: 114408922612029700}
+  - component: {fileID: 114294350124996224}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -40,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1270683013082954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.42, z: 0}
+  m_LocalPosition: {x: 0, y: -4.39, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -151,6 +153,35 @@ MonoBehaviour:
   layerMask: 0
   canJump: 0
   maxJumpPower: 13.5
+--- !u!114 &114294350124996224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270683013082954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101496dbf217f0c4f8318215d248dd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreList: 
+--- !u!114 &114408922612029700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270683013082954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdad8082f6602074eb6ec760308681aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  comboCount: 0
+  lives: 0
+  highScoreList: {fileID: 0}
+  scoreText: {fileID: 0}
+  livesText: {fileID: 0}
 --- !u!114 &114931564303226482
 MonoBehaviour:
   m_ObjectHideFlags: 1
