@@ -12,19 +12,21 @@ public class Jump : MonoBehaviour {
     public float JumpPower;
     public State state;
     public Rigidbody2D rigidbody;
-    public AnimationClip jump;
-    public AnimationClip crouch;
-    public AnimationClip idle;
-
+    public int layerMask;
+    public bool canJump;
 	// Use this for initialization
 	void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
+        layerMask = 1 << 8;
+        layerMask = ~layerMask;
+        canJump = true;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.DrawRay(transform.position, Vector2.down, Color.red, 0.5f);
-        if(Physics2D.Raycast(transform.position, Vector2.down, GetComponent<SpriteRenderer>().sprite.rect.height /2))
+
+        if (canJump)
         {
             state = State.Idle;
             if (Input.GetButtonDown("Jump"))
@@ -34,16 +36,17 @@ public class Jump : MonoBehaviour {
 
             if (Input.GetButton("Jump"))
             {
-                JumpPower += 5 * Time.deltaTime;
-                if(JumpPower > 13)
+                JumpPower += 20 * Time.deltaTime;
+                if(JumpPower > 13.5f)
                 {
-                    JumpPower = 13;
+                    JumpPower = 13.5f;
                 }
                 state = State.Crouch;
             }
             if (Input.GetButtonUp("Jump"))
             {
                 rigidbody.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
+                canJump = false;
             }
         }
         else
@@ -52,6 +55,14 @@ public class Jump : MonoBehaviour {
         }
 
         GetComponent<Animator>().SetInteger("State", (int) state);
-        print(GetComponent<SpriteRenderer>().sprite.rect.height / 2);
+        print((int)state);
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Floor")
+        {
+            canJump = true;
+        }
+    }
 }
