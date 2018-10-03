@@ -17,6 +17,7 @@ public class Score : MonoBehaviour {
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
         livesText = GameObject.Find("LivesText").GetComponent<Text>();
         highScoreList = FindObjectOfType<ScoreList>().gameObject;
+        lives = 3;
 	}
 	
 	// Update is called once per frame
