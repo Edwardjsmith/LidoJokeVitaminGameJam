@@ -18,6 +18,7 @@ public class jokeCollision : MonoBehaviour
         if(collision.name == "trigger")
         {
             score.resetCombo();
+            joke.ResetSpeed();
         }
 
         joke.ResetPosition();
