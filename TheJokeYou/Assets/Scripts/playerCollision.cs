@@ -6,17 +6,27 @@ using UnityEngine.SceneManagement;
 public class playerCollision : MonoBehaviour {
 
     Score score;
+    float timer;
 
     private void Start()
     {
         score = GetComponent<Score>();
     }
 
+    void Update()
+    {
+        timer -= Time.deltaTime;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.name == "Joke")
         {
-            score.ScoreIncrement();
+            if (timer <= 0)
+            {
+                score.ScoreIncrement();
+                timer = 0.5f;
+            }
         }
 
         if(collision.name == "start")
