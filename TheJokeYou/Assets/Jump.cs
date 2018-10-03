@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Jump : MonoBehaviour {
     public enum State
@@ -15,14 +16,17 @@ public class Jump : MonoBehaviour {
     public int layerMask;
     public bool canJump;
     public float maxJumpPower;
+    public Slider powerBar;
+    public float jumpSpeed;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
         layerMask = 1 << 8;
         layerMask = ~layerMask;
         canJump = true;
-
+        powerBar = GameObject.Find("PowerBar").GetComponent<Slider>();
+        powerBar.maxValue = maxJumpPower;
 	}
 	
 	// Update is called once per frame
@@ -38,7 +42,7 @@ public class Jump : MonoBehaviour {
 
             if (Input.GetButton("Jump"))
             {
-                JumpPower += 20 * Time.deltaTime;
+                JumpPower += jumpSpeed * Time.deltaTime;
                 if(JumpPower > maxJumpPower)
                 {
                     JumpPower = maxJumpPower;
@@ -48,6 +52,7 @@ public class Jump : MonoBehaviour {
             if (Input.GetButtonUp("Jump"))
             {
                 rigidbody.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
+                JumpPower = 0;
                 canJump = false;
             }
         }
@@ -57,7 +62,7 @@ public class Jump : MonoBehaviour {
         }
 
         GetComponent<Animator>().SetInteger("State", (int) state);
-        print((int)state);
+        powerBar.value = JumpPower;
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
