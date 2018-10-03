@@ -14,6 +14,8 @@ public class Jump : MonoBehaviour {
     public Rigidbody2D rigidbody;
     public int layerMask;
     public bool canJump;
+    public float maxJumpPower;
+
 	// Use this for initialization
 	void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -37,9 +39,9 @@ public class Jump : MonoBehaviour {
             if (Input.GetButton("Jump"))
             {
                 JumpPower += 20 * Time.deltaTime;
-                if(JumpPower > 13.5f)
+                if(JumpPower > maxJumpPower)
                 {
-                    JumpPower = 13.5f;
+                    JumpPower = maxJumpPower;
                 }
                 state = State.Crouch;
             }
