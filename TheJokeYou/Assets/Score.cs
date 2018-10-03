@@ -19,6 +19,19 @@ public class Score : MonoBehaviour {
 
     public void ScoreIncrement()
     {
+        if(comboCount<=0)
+        {
+            score++;
+        }
+        else
+        {
+            score = (score+1) * comboCount;
+        }
+        comboCount++;
+    }
 
+    public void resetCombo()
+    {
+        comboCount = 0;
     }
 }
