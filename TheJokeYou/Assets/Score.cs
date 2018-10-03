@@ -32,7 +32,7 @@ public class Score : MonoBehaviour {
         }
         else
         {
-            score = (score+1) * comboCount;
+            score = (score+1) + comboCount;
         }
         comboCount++;
         scoreText.text = score.ToString();
