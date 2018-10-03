@@ -9,12 +9,14 @@ public class Score : MonoBehaviour {
     public int comboCount;
     public int lives;
 
+    public GameObject highScoreList;
     public Text scoreText;
     public Text livesText;
     // Use this for initialization
     void Start () {
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
         livesText = GameObject.Find("LivesText").GetComponent<Text>();
+        highScoreList = FindObjectOfType<ScoreList>().gameObject;
 	}
 	
 	// Update is called once per frame
@@ -44,6 +46,8 @@ public class Score : MonoBehaviour {
         if(lives<0)
         {
             // do end game
+            highScoreList.GetComponent<ScoreList>().add(score);
+            score = 0;
         }
     }
 }
