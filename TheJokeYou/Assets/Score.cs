@@ -6,6 +6,7 @@ public class Score : MonoBehaviour {
 
     public int score;
     public int comboCount;
+    public int lives;
 
 	// Use this for initialization
 	void Start () {
@@ -33,5 +34,10 @@ public class Score : MonoBehaviour {
     public void resetCombo()
     {
         comboCount = 0;
+        lives--;
+        if(lives<0)
+        {
+            // do end game
+        }
     }
 }
