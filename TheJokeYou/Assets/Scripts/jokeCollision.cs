@@ -10,7 +10,7 @@ public class jokeCollision : MonoBehaviour
     private void Start()
     {
         joke = GetComponent<Joke>();
-        score = GameObject.Find("player").GetComponent<Score>();
+        score = GameObject.Find("Player").GetComponent<Score>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
