@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Joke : MonoBehaviour {
 
@@ -15,16 +16,20 @@ public class Joke : MonoBehaviour {
     public float warningTime;
     public float timeToStart;
     public GameObject warning;
+    public TextAsset jokes;
 
     private float moveTimer;
     private float warningTimer;
     private float startTimer;
     private float baseSpeed;
     private Score score;
+    private TextMesh textMesh;
+    private float textWidth;
 
     void Start()
     {
         score = FindObjectOfType<Score>();
+        textMesh = GetComponent<TextMesh>();
         baseSpeed = speed;
         startTimer = timeToStart;
         ResetPosition();
@@ -32,11 +37,24 @@ public class Joke : MonoBehaviour {
 
 	public void ResetPosition()
     {
+        if (jokes) textMesh.text = "<-" + jokes.text.Split('\n')[Random.Range(0, jokes.text.Split('\n').Length)] + "--";
         transform.position = new Vector3(startX, Random.Range(minY, maxY), 0);
         moveTimer = timeToNextJoke;
         warningTimer = warningTime;
         warning.SetActive(true);
         speed = Mathf.Clamp(speed + speedIncrease, 0, maxSpeed);
+
+        float width = 0;
+        foreach(char symbol in textMesh.text)
+        {
+            CharacterInfo info;
+            if (textMesh.font.GetCharacterInfo(symbol, out info, textMesh.fontSize, textMesh.fontStyle))
+            {
+                width += info.advance;
+            }
+        }
+
+        textWidth = width * textMesh.characterSize * textMesh.transform.lossyScale.x * 0.1f;
     }
 
     public void ResetSpeed()
@@ -58,7 +76,7 @@ public class Joke : MonoBehaviour {
                 {
                     warning.SetActive(false);
                     transform.Translate(new Vector3(-speed, 0, 0));
-                    if (transform.position.x <= endX)
+                    if (transform.position.x <= endX - textWidth)
                     {
                         ResetPosition();
                     }

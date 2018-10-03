@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startX: 10
-  endX: -15
+  endX: -10
   maxY: 4.4
   minY: -4.4
   speed: 0.2
@@ -233,3 +233,4 @@ MonoBehaviour:
   warningTime: 1
   timeToStart: 2
   warning: {fileID: 1962992202814518}
+  jokes: {fileID: 4900000, guid: 72ce7a5c1eaf8924dbf80ecc8bf69863, type: 3}
