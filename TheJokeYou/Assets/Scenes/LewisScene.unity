@@ -314,11 +314,12 @@ MonoBehaviour:
   endX: -15
   maxY: 4.4
   minY: -4.4
-  speed: 1
-  speedIncrease: 1
-  maxSpeed: 10
+  speed: 0.2
+  speedIncrease: 0.1
+  maxSpeed: 5
   timeToNextJoke: 0.1
-  warningTime: 3
+  warningTime: 1
+  timeToStart: 2
   warning: {fileID: 500020219}
 --- !u!102 &1470396690
 TextMesh:

@@ -13,15 +13,18 @@ public class Joke : MonoBehaviour {
     public float maxSpeed;
     public float timeToNextJoke;
     public float warningTime;
+    public float timeToStart;
     public GameObject warning;
 
     private float moveTimer;
     private float warningTimer;
+    private float startTimer;
     private float baseSpeed;
 
     void Start()
     {
         baseSpeed = speed;
+        startTimer = timeToStart;
         ResetPosition();
     }
 
@@ -41,23 +44,31 @@ public class Joke : MonoBehaviour {
 
     void Update()
     {
-        moveTimer -= Time.deltaTime;
-        warningTimer -= Time.deltaTime;
-        if (moveTimer <= 0)
+        startTimer -= Time.deltaTime;
+        if (startTimer <= 0)
         {
-            if (warningTimer <= 0)
+            moveTimer -= Time.deltaTime;
+            warningTimer -= Time.deltaTime;
+            if (moveTimer <= 0)
             {
-                warning.SetActive(false);
-                transform.Translate(new Vector3(-speed, 0, 0));
-                if (transform.position.x <= endX)
+                if (warningTimer <= 0)
                 {
-                    ResetPosition();
+                    warning.SetActive(false);
+                    transform.Translate(new Vector3(-speed, 0, 0));
+                    if (transform.position.x <= endX)
+                    {
+                        ResetPosition();
+                    }
+                }
+                else if (Time.frameCount % 4 == 0)
+                {
+                    warning.SetActive(!warning.activeInHierarchy);
                 }
             }
-            else if (Time.frameCount % 4 == 0)
-            {
-                warning.SetActive(!warning.activeInHierarchy);
-            }
+        }
+        else
+        {
+            warning.SetActive(false);
         }
     }
 }
