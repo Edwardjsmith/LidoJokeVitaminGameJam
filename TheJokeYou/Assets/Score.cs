@@ -58,7 +58,8 @@ public class Score : MonoBehaviour {
         comboCount = 0;
         lives--;
         livesText.text = lives.ToString();
-        if(lives<0)
+        comboText.text = comboCount.ToString();
+        if (lives<0)
         {
             // do end game
             highScoreList.GetComponent<ScoreList>().add(score);
