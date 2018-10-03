@@ -20,9 +20,11 @@ public class Joke : MonoBehaviour {
     private float warningTimer;
     private float startTimer;
     private float baseSpeed;
+    private Score score;
 
     void Start()
     {
+        score = FindObjectOfType<Score>();
         baseSpeed = speed;
         startTimer = timeToStart;
         ResetPosition();
@@ -40,6 +42,7 @@ public class Joke : MonoBehaviour {
     public void ResetSpeed()
     {
         speed = baseSpeed;
+        if (score) score.resetCombo();
     }
 
     void Update()
