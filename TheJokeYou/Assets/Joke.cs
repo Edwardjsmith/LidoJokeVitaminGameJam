@@ -11,6 +11,7 @@ public class Joke : MonoBehaviour {
     public float minY;
     public float speed;
     public float speedIncrease;
+    public float delayDecrease;
     public float maxSpeed;
     public float timeToNextJoke;
     public float warningTime;
@@ -38,7 +39,7 @@ public class Joke : MonoBehaviour {
         ResetPosition();
     }
 
-	public void ResetPosition()
+    public void SetJoke()
     {
         if (jokes)
         {
@@ -47,13 +48,18 @@ public class Joke : MonoBehaviour {
             {
                 nextJoke = jokeList[Random.Range(0, jokeList.Length)];
             }
-            textMesh.text = "<-" + nextJoke + "--";
+            textMesh.text = nextJoke;
             prevJoke = nextJoke;
         }
+    }
+
+	public void ResetPosition()
+    {
+        SetJoke();
         transform.position = new Vector3(startX, Random.Range(minY, maxY), 0);
+        //timeToNextJoke = Mathf.Clamp(timeToNextJoke - delayDecrease, 0, 100);
         moveTimer = timeToNextJoke;
         warningTimer = warningTime;
-        warning.SetActive(true);
         speed = Mathf.Clamp(speed + speedIncrease, 0, maxSpeed);
 
         float width = 0;
@@ -93,6 +99,7 @@ public class Joke : MonoBehaviour {
                     if (transform.position.x <= endX - textWidth)
                     {
                         ResetPosition();
+                        ResetSpeed();
                     }
                 }
                 else if (Time.frameCount % 4 == 0)

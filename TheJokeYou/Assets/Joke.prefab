@@ -239,9 +239,10 @@ MonoBehaviour:
   maxY: 4.4
   minY: -4.4
   speed: 0.2
-  speedIncrease: 0.1
+  speedIncrease: 0.05
+  delayDecrease: 0.05
   maxSpeed: 5
-  timeToNextJoke: 0.1
+  timeToNextJoke: 1
   warningTime: 1
   timeToStart: 2
   warning: {fileID: 1962992202814518}
