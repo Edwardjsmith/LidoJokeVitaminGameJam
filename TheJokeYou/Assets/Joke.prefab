@@ -242,7 +242,7 @@ MonoBehaviour:
   speedIncrease: 0.05
   delayDecrease: 0.05
   maxSpeed: 5
-  timeToNextJoke: 1
+  timeToNextJoke: 0
   warningTime: 1
   timeToStart: 2
   warning: {fileID: 1962992202814518}

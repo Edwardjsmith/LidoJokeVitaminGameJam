@@ -56,6 +56,8 @@ public class Joke : MonoBehaviour {
 	public void ResetPosition()
     {
         SetJoke();
+        startX = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x;
+        endX = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
         transform.position = new Vector3(startX, Random.Range(minY, maxY), 0);
         //timeToNextJoke = Mathf.Clamp(timeToNextJoke - delayDecrease, 0, 100);
         moveTimer = timeToNextJoke;
