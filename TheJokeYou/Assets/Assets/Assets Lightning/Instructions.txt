@@ -1,0 +1,5 @@
+Put warp pngs on top of each other
+~
+Make the warp pngs rotate counter to each other
+
+Make lightning sheet come off of it every 10 seconds or something
