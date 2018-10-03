@@ -9,13 +9,18 @@ public class Scoreboard : MonoBehaviour {
     public GameObject ScoreContent;
     public GameObject HighScorePrefab;
 
+    ScoreList score;
+
     private int highscore;
 
     void Start ()
     {
-        for (int i = 0; i < ScoreList.length; i++)
+        score = FindObjectOfType<ScoreList>();
+
+
+        for (int i = 0; i < score.scoreList.Count; i++)
         {
-            highscore = ScoreList[count];
+            highscore = score.scoreList[i];
 
             GameObject HighScoreObj = Instantiate(HighScorePrefab);
             HighScoreObj.transform.SetParent(ScoreContent.transform, false);
