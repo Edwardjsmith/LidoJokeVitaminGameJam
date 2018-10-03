@@ -59,10 +59,10 @@ public class Score : MonoBehaviour {
         lives--;
         livesText.text = lives.ToString();
         comboText.text = comboCount.ToString();
-        if (lives<0)
+        if (lives <= 0)
         {
             // do end game
-            highScoreList.GetComponent<ScoreList>().add(score);
+           // highScoreList.GetComponent<ScoreList>().add(score);
             score = 0;
             SceneManager.LoadScene("Menu");
         }
